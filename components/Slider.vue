@@ -8,7 +8,7 @@
         <input
           class="w-full"
           type="range"
-          min="1"
+          min="0"
           max="100"
           v-model="value"
           @touchend="sendCommand"

@@ -24,8 +24,18 @@
           "suffix": null
         },
         {
+          "label": "Licht Regal vorne",
+          "item_name": "alwindeskrgb_white",
+          "suffix": null
+        },
+        {
           "label": "RGB Schreibtisch",
           "item_name": "alwindeskrgb_Farbe",
+          "suffix": null
+        },
+        {
+          "label": "RGB Regal",
+          "item_name": "alwin_unendlichkeitsspiegel_color",
           "suffix": null
         }
       ]
