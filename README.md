@@ -1,4 +1,16 @@
 # smartdashboard
+A custom dashboard for openHAB.
+![Screenshot](screenshots/screen1.png)
+
+## Usage
+ - clone this repo
+ - run `yarn`
+ - put your config in static/configs folder. (you can also have it somewhere else if CORS is allowed)
+ - run `yarn generate`
+ - deploy `dist` folder to your webserver.
+ - go to `http:<host>:<port>/config` and set the values
+ - enjoy your dashboard
+
 
 ## Build Setup
 
