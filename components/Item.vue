@@ -23,7 +23,7 @@
             :duration="300"
             :formatValue="formatValue"
           />
-          <p v-else>{{ value }}</p>
+          <p v-else>{{ value.toString() + (suffix || '') }}</p>
         </div>
       </div>
     </div>
@@ -72,7 +72,7 @@ export default Vue.extend({
     },
 
     formatValue: function (value: number) {
-      return `${value.toFixed(0)}${this.suffix}`
+      return `${value.toFixed(0)}${this.suffix || ''}`
     },
 
     handleClick: async function (event) {

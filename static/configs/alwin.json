@@ -1,0 +1,59 @@
+{
+  "pages": [
+    {
+      "name": "gome",
+      "refresh": 5,
+      "rows": 3,
+      "background_color": "#000",
+      "background_image": "",
+      "box_color": "rgb(30, 30, 40)",
+      "items": [
+        {
+          "label": "Licht vorne",
+          "item_name": "alwin_licht_vorne",
+          "suffix": null
+        },
+        {
+          "label": "Licht hinten",
+          "item_name": "alwin_light_1",
+          "suffix": null
+        },
+        {
+          "label": "LED hinten rechts",
+          "item_name": "alwinrgbregalhinten_white",
+          "suffix": null
+        },
+        {
+          "label": "Netz",
+          "item_name": "E3DC_Netz",
+          "suffix": "W"
+        },
+        {
+          "label": "Akkustand",
+          "item_name": "E3DC_SOC",
+          "suffix": "%"
+        },
+        {
+          "label": "Autarkie",
+          "item_name": "E3DC_Autarkie",
+          "suffix": "%"
+        },
+        {
+          "label": "Eigenstrom",
+          "item_name": "E3DC_Eigen",
+          "suffix": "%"
+        },
+        {
+          "label": "Tor Zeitsteuerung",
+          "item_name": "gate_schedule_active",
+          "suffix": null
+        },
+        {
+          "label": "Tor",
+          "item_name": "alwinrgbregalhinten_white",
+          "suffix": "%"
+        }
+      ]
+    }
+  ]
+}
