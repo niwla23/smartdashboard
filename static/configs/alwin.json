@@ -22,36 +22,6 @@
           "label": "LED hinten rechts",
           "item_name": "alwinrgbregalhinten_white",
           "suffix": null
-        },
-        {
-          "label": "Netz",
-          "item_name": "E3DC_Netz",
-          "suffix": "W"
-        },
-        {
-          "label": "Akkustand",
-          "item_name": "E3DC_SOC",
-          "suffix": "%"
-        },
-        {
-          "label": "Autarkie",
-          "item_name": "E3DC_Autarkie",
-          "suffix": "%"
-        },
-        {
-          "label": "Eigenstrom",
-          "item_name": "E3DC_Eigen",
-          "suffix": "%"
-        },
-        {
-          "label": "Tor Zeitsteuerung",
-          "item_name": "gate_schedule_active",
-          "suffix": null
-        },
-        {
-          "label": "Tor",
-          "item_name": "alwinrgbregalhinten_white",
-          "suffix": "%"
         }
       ]
     }
