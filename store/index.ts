@@ -1,7 +1,8 @@
 export const state = () => ({
   currentItem: "",
   currentItemState: "",
-  sliderOverlayShown: false
+  sliderOverlayShown: false,
+  colorpickerOverlayShown: false
 })
 
 export const mutations = {
@@ -11,7 +12,10 @@ export const mutations = {
   setItemState(state, itemState: string) {
     state.currentItemState = itemState
   },
-  setSliderOverlayShow(state, value: boolean) {
+  setSliderOverlayShown(state, value: boolean) {
     state.sliderOverlayShown = value
+  },
+  setColorpickerOverlayShown(state, value: boolean) {
+    state.colorpickerOverlayShown = value
   }
 }

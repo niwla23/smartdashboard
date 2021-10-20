@@ -23,8 +23,14 @@
             :duration="300"
             :formatValue="formatValue"
           />
-          <section class="w-full flex flex-row justify-center p-4" v-else-if="type === 'Color'">
-            <figure class="w-40 h-40 rounded-full" :style="{ 'background-color': rgbColor }" />
+          <section
+            class="w-full flex flex-row justify-center p-4"
+            v-else-if="type === 'Color'"
+          >
+            <figure
+              class="w-40 h-40 rounded-full"
+              :style="{ 'background-color': rgbColor }"
+            />
           </section>
           <p v-else>{{ value.toString() + (suffix || '') }}</p>
         </div>
@@ -80,6 +86,8 @@ export default Vue.extend({
     },
 
     handleClick: async function (event) {
+      this.$store.commit('setItem', this.itemName)
+      this.$store.commit('setItemState', this.value)
       if (this.type === 'Switch') {
         // switch action handling (toggle)
         const _data = await fetch(
@@ -89,9 +97,10 @@ export default Vue.extend({
         this.loadState()
       } else if (this.type === 'Dimmer') {
         // dimmer action handling (open slider)
-        this.$store.commit('setItem', this.itemName)
-        this.$store.commit('setItemState', this.value)
-        this.$store.commit('setSliderOverlayShow', true)
+        this.$store.commit('setSliderOverlayShown', true)
+      } else if (this.type === 'Color') {
+        // dimmer action handling (open slider)
+        this.$store.commit('setColorpickerOverlayShown', true)
       }
     },
   },

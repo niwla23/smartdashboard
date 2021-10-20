@@ -1,6 +1,7 @@
 <template>
   <main>
     <Slider v-if="this.$store.state.sliderOverlayShown" />
+    <Colorpicker v-if="this.$store.state.colorpickerOverlayShown" />
     <div
       v-hammer:swipe.left="nextPage"
       v-hammer:pan="swipeUp"
@@ -44,6 +45,7 @@ export default Vue.extend({
     return {
       dashboardConfig: emptyConfig,
       page: 0,
+      tempColor: [100, 100, 6]
     }
   },
   methods: {
