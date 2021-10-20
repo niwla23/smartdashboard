@@ -23,6 +23,9 @@
             :duration="300"
             :formatValue="formatValue"
           />
+          <section class="w-full flex flex-row justify-center p-4" v-else-if="type === 'Color'">
+            <figure class="w-40 h-40 rounded-full" :style="{ 'background-color': rgbColor }" />
+          </section>
           <p v-else>{{ value.toString() + (suffix || '') }}</p>
         </div>
       </div>
@@ -33,6 +36,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import AnimatedNumber from 'animated-number-vue'
+import hsbToRgb from '@/helpers/hsbToRgb'
 
 export default Vue.extend({
   props: {
@@ -98,6 +102,17 @@ export default Vue.extend({
     this.timer = setInterval(() => {
       this.loadState()
     }, this.refresh * 1000)
+  },
+
+  computed: {
+    rgbColor: function (): null | string {
+      if (this.type === 'Color') {
+        let hsb = this.value.split(',')
+        let rgb = hsbToRgb(Number(hsb[0]), Number(hsb[1]), Number(hsb[2]))
+        return `rgb(${rgb.join(',')})`
+      }
+      return null
+    },
   },
 
   destroyed: function () {

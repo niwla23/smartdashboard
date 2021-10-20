@@ -22,6 +22,11 @@
           "label": "LED hinten rechts",
           "item_name": "alwinrgbregalhinten_white",
           "suffix": null
+        },
+        {
+          "label": "RGB Schreibtisch",
+          "item_name": "alwindeskrgb_Farbe",
+          "suffix": null
         }
       ]
     }

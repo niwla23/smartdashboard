@@ -4,7 +4,7 @@
     <div
       v-hammer:swipe.left="nextPage"
       v-hammer:pan="swipeUp"
-      class="grid gap-6 h-screen p-4 bg-cover"
+      class="grid auto-rows-fr gap-6 h-screen p-4 bg-cover"
       :style="{
         'grid-template-columns': `repeat(${pageConfig.columns}, minmax(0, 1fr))`,
         'background-color': pageConfig.background_color,
