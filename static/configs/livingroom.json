@@ -1,0 +1,107 @@
+{
+    "pages": [
+        {
+            "name": "energy",
+            "refresh": 5,
+            "rows": 3,
+            "columns": 3,
+            "background_color": "#000",
+            "background_image": "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg",
+            "box_color": "#ff80b2a3",
+            "items": [
+                {
+                    "label": "Produktion",
+                    "item_name": "E3DC_PV",
+                    "suffix": "W"
+                },
+                {
+                    "label": "Verbrauch",
+                    "item_name": "E3DC_Haus",
+                    "suffix": "W"
+                },
+                {
+                    "label": "Akkuladeleistung",
+                    "item_name": "E3DC_Battery",
+                    "suffix": "W"
+                },
+                {
+                    "label": "Netz",
+                    "item_name": "E3DC_Netz",
+                    "suffix": "W"
+                },
+                {
+                    "label": "Akkustand",
+                    "item_name": "E3DC_SOC",
+                    "suffix": "%"
+                },
+                {
+                    "label": "Autarkie",
+                    "item_name": "E3DC_Autarkie",
+                    "suffix": "%"
+                },
+                {
+                    "label": "Eigenstrom",
+                    "item_name": "E3DC_Eigen",
+                    "suffix": "%"
+                },
+                {
+                    "label": "Tor Zeitsteuerung",
+                    "item_name": "gate_schedule_active",
+                    "suffix": null
+                },
+                {
+                    "label": "Tor",
+                    "item_name": "alwinrgbregalhinten_white",
+                    "suffix": "%"
+                }
+            ]
+        },
+        {
+            "name": "energy",
+            "refresh": 5,
+            "rows": 4,
+            "columns": 4,
+            "background_color": "#000",
+            "background_image": "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg",
+            "box_color": "#ff80b2a3",
+            "items": [
+                {
+                    "label": "Produktion",
+                    "item_name": "E3DC_PV"
+                },
+                {
+                    "label": "Verbrauch",
+                    "item_name": "E3DC_Haus"
+                },
+                {
+                    "label": "Akkuladeleistung",
+                    "item_name": "E3DC_Battery"
+                },
+                {
+                    "label": "Netz",
+                    "item_name": "E3DC_Netz"
+                },
+                {
+                    "label": "Akkustand",
+                    "item_name": "E3DC_SOC"
+                },
+                {
+                    "label": "Autarkie",
+                    "item_name": "E3DC_Autarkie"
+                },
+                {
+                    "label": "Eigenstrom",
+                    "item_name": "E3DC_Eigen"
+                },
+                {
+                    "label": "Tor Zeisteuerung",
+                    "item_name": "gate_schedule_active"
+                },
+                {
+                    "label": "Tor",
+                    "item_name": "gate"
+                }
+            ]
+        }
+    ]
+}
