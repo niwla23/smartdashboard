@@ -26,7 +26,7 @@ All items are supported for display. The listed items have a special implementat
  - Dimmer
  - Number
  - Switch
- - Planned: Color
+ - Color
 
 ## Build Setup
 
