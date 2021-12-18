@@ -1,7 +1,11 @@
 <template>
   <section
     class="w-full h-full bg-white rounded-lg flex justify-center"
-    :style="{ 'background-color': cellColor }"
+    :style="{
+      'background-color': value === 'ON' ? activeColor : cellColor,
+      'border-color': borderColor,
+      'border-width': borderWidth,
+    }"
   >
     <div
       v-hammer:tap="handleClick"
@@ -21,11 +25,11 @@
             v-if="type === 'Number' || type === 'Dimmer'"
             :value="value"
             :duration="300"
-            :formatValue="formatValue"
+            :format-value="formatValue"
           />
           <section
-            class="w-full flex flex-row justify-center p-4"
             v-else-if="type === 'Color'"
+            class="w-full flex flex-row justify-center p-4"
           >
             <figure
               class="w-40 h-40 rounded-full"
@@ -45,16 +49,18 @@ import AnimatedNumber from 'animated-number-vue'
 import hsbToRgb from '@/helpers/hsbToRgb'
 
 export default Vue.extend({
-  props: {
-    cellColor: String,
-    itemName: String,
-    label: String,
-    suffix: String,
-    refresh: Number,
-  },
-
   components: {
     AnimatedNumber,
+  },
+  props: {
+    cellColor: { type: String, required: true },
+    activeColor: { type: String, required: true },
+    borderColor: { type: String, required: true },
+    borderWidth: { type: String, required: true },
+    itemName: { type: String, required: true },
+    label: { type: String, required: true },
+    suffix: { type: String, required: true },
+    refresh: { type: Number, default: 5 },
   },
 
   data: () => {
@@ -65,15 +71,38 @@ export default Vue.extend({
     }
   },
 
+  computed: {
+    rgbColor(): null | string {
+      if (this.type === 'Color') {
+        const hsb = this.value.split(',')
+        const rgb = hsbToRgb(Number(hsb[0]), Number(hsb[1]), Number(hsb[2]))
+        return `rgb(${rgb.join(',')})`
+      }
+      return null
+    },
+  },
+
+  mounted() {
+    this.loadType()
+    this.loadState()
+    this.timer = setInterval(() => {
+      this.loadState()
+    }, this.refresh * 1000)
+  },
+
+  destroyed() {
+    this.timer = null
+  },
+
   methods: {
-    loadState: async function () {
+    async loadState() {
       const state = await fetch(
         `${localStorage.getItem('baseURL')}/items/${this.itemName}/state`
       )
       this.value = await state.text()
     },
 
-    loadType: async function () {
+    async loadType() {
       const state = await fetch(
         `${localStorage.getItem('baseURL')}/items/${this.itemName}`
       )
@@ -81,11 +110,11 @@ export default Vue.extend({
       this.type = data.type
     },
 
-    formatValue: function (value: number) {
+    formatValue(value: number) {
       return `${value.toFixed(0)}${this.suffix || ''}`
     },
 
-    handleClick: async function (event) {
+    async handleClick(event) {
       this.$store.commit('setItem', this.itemName)
       this.$store.commit('setItemState', this.value)
       if (this.type === 'Switch') {
@@ -103,29 +132,6 @@ export default Vue.extend({
         this.$store.commit('setColorpickerOverlayShown', true)
       }
     },
-  },
-
-  mounted: function () {
-    this.loadType()
-    this.loadState()
-    this.timer = setInterval(() => {
-      this.loadState()
-    }, this.refresh * 1000)
-  },
-
-  computed: {
-    rgbColor: function (): null | string {
-      if (this.type === 'Color') {
-        let hsb = this.value.split(',')
-        let rgb = hsbToRgb(Number(hsb[0]), Number(hsb[1]), Number(hsb[2]))
-        return `rgb(${rgb.join(',')})`
-      }
-      return null
-    },
-  },
-
-  destroyed: function () {
-    this.timer = null
   },
 })
 </script>

@@ -1,7 +1,7 @@
 <template>
   <main>
-    <Slider v-if="this.$store.state.sliderOverlayShown" />
-    <Colorpicker v-if="this.$store.state.colorpickerOverlayShown" />
+    <Slider v-if="$store.state.sliderOverlayShown" />
+    <Colorpicker v-if="$store.state.colorpickerOverlayShown" />
     <div
       v-hammer:swipe.left="nextPage"
       v-hammer:pan="swipeUp"
@@ -15,8 +15,11 @@
       <Item
         v-for="item in pageConfig.items"
         :key="item.item_name"
-        :cellColor="pageConfig.box_color"
-        :itemName="item.item_name"
+        :cell-color="pageConfig.box_color"
+        :active-color="pageConfig.active_color"
+        :border-color="pageConfig.border_color"
+        :border-width="pageConfig.border_width"
+        :item-name="item.item_name"
         :label="item.label"
         :suffix="item.suffix"
         :refresh="pageConfig.refresh"
@@ -29,14 +32,29 @@
 import Vue from 'vue'
 import { DashboardConfig, Page } from '@/types'
 
-const emptyConfig: DashboardConfig = {"pages": [{"name": "test", "refresh": 2, "columns": 3, "background_color": "#000", "background_image": "", box_color: "#fff", "items": []}]}
+const emptyConfig: DashboardConfig = {
+  pages: [
+    {
+      name: 'test',
+      refresh: 2,
+      columns: 3,
+      background_color: '#000',
+      background_image: '',
+      box_color: '#fff',
+      active_color: '#fff',
+      border_color: '#fff',
+      border_width: '0.1rem',
+      items: [],
+    },
+  ],
+}
 
 declare global {
   interface Element {
-      requestFullScreen?(): void;
-      mozRequestFullScreen?(): void;
-      webkitRequestFullscreen?(): void;
-      msRequestFullscreen?(): void;
+    requestFullScreen?(): void
+    mozRequestFullScreen?(): void
+    webkitRequestFullscreen?(): void
+    msRequestFullscreen?(): void
   }
 }
 
@@ -45,17 +63,25 @@ export default Vue.extend({
     return {
       dashboardConfig: emptyConfig,
       page: 0,
-      tempColor: [100, 100, 6]
+      tempColor: [100, 100, 6],
     }
   },
+  computed: {
+    pageConfig(): Page {
+      return this.dashboardConfig.pages[this.page]
+    },
+  },
+  mounted() {
+    this.loadDashboardConfig()
+  },
   methods: {
-    loadDashboardConfig: async function() {
-      const response = await fetch(localStorage.getItem("configPath") || "")
+    async loadDashboardConfig() {
+      const response = await fetch(localStorage.getItem('configPath') || '')
       const dashboardConfig: DashboardConfig = await response.json()
       this.dashboardConfig = dashboardConfig
     },
-    swipeUp: function () {
-      let elem = document.documentElement
+    swipeUp() {
+      const elem = document.documentElement
       if (elem.requestFullscreen) {
         elem.requestFullscreen()
       } else if (elem.mozRequestFullScreen) {
@@ -66,20 +92,12 @@ export default Vue.extend({
         elem.msRequestFullscreen()
       }
     },
-    nextPage: function () {
+    nextPage() {
       if (this.page === this.dashboardConfig.pages.length - 1) {
         this.page = 0
       } else {
         this.page += 1
       }
-    },
-  },
-  mounted: function() {
-    this.loadDashboardConfig()
-  },
-  computed: {
-    pageConfig: function (): Page {
-      return this.dashboardConfig.pages[this.page]
     },
   },
 })
