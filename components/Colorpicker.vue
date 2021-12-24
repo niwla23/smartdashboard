@@ -17,16 +17,16 @@
           />
         </div>
         <input
+          v-model="brightness"
           class="w-full"
           type="range"
           min="0"
           max="100"
-          v-model="brightness"
         />
         <button
-          @click="close"
           class="rounded-lg p-2 text-lg w-full h-16 mt-8"
           :style="{ backgroundColor: colorToString(color) }"
+          @click="close"
         >
           Select
         </button>
@@ -41,9 +41,9 @@ import rgbToHsb from '~/helpers/rgbToHsb'
 import hsbToRgb from '~/helpers/hsbToRgb'
 
 export default Vue.extend({
-  data: function () {
+  data() {
     return {
-      color: this.itemStateToRgb(this.$store.state.currentItemState), // rgb
+      color: [0, 0, 0], // rgb
       brightness: 100,
       colors: [
         [0, 0, 0],
@@ -61,37 +61,12 @@ export default Vue.extend({
       ],
     }
   },
-  methods: {
-    selectColor: function (color: number[]) {
-      this.color = this.applyBrightnessToColor(color)
-    },
-    applyBrightnessToColor: function (color: number[]) {
-      // take color, convert it to hsb, set brightness, convert to rgb, return
-      let hsb = rgbToHsb(color[0], color[1], color[2])
-      hsb[2] = this.brightness
-      return hsbToRgb(hsb[0], hsb[1], hsb[2])
-    },
-    colorToString: function (color: number[]) {
-      let processed_color = this.applyBrightnessToColor(color)
-      return `rgb(${processed_color[0]},${processed_color[1]},${processed_color[2]})`
-    },
-    itemStateToRgb: function (state: string) {
-      let split = state.split(',')
-      let h = Number(split[0])
-      let s = Number(split[1])
-      let v = Number(split[2])
-      return hsbToRgb(h, s, v)
-    },
-    close: function () {
-      this.$store.commit('setColorpickerOverlayShown', false)
-    },
-  },
   watch: {
-    brightness: function () {
+    brightness() {
       this.color = this.applyBrightnessToColor(this.color)
     },
-    color: async function () {
-      let itemName: string = this.$store.state.currentItem
+    async color() {
+      const itemName: string = this.$store.state.currentItem
       const _data = await fetch(
         `${localStorage.getItem('baseURL')}/items/${itemName}`,
         {
@@ -102,8 +77,34 @@ export default Vue.extend({
     },
   },
 
-  mounted: function () {
+  mounted() {
     this.brightness = rgbToHsb(this.color[0], this.color[1], this.color[2])[2]
+    this.color = this.itemStateToRgb(this.$store.state.currentItemState)
+  },
+  methods: {
+    selectColor(color: number[]) {
+      this.color = this.applyBrightnessToColor(color)
+    },
+    applyBrightnessToColor(color: number[]) {
+      // take color, convert it to hsb, set brightness, convert to rgb, return
+      const hsb = rgbToHsb(color[0], color[1], color[2])
+      hsb[2] = this.brightness
+      return hsbToRgb(hsb[0], hsb[1], hsb[2])
+    },
+    colorToString(color: number[]) {
+      const processed_color = this.applyBrightnessToColor(color)
+      return `rgb(${processed_color[0]},${processed_color[1]},${processed_color[2]})`
+    },
+    itemStateToRgb(state: string) {
+      const split = state.split(',')
+      const h = Number(split[0])
+      const s = Number(split[1])
+      const v = Number(split[2])
+      return hsbToRgb(h, s, v)
+    },
+    close() {
+      this.$store.commit('setColorpickerOverlayShown', false)
+    },
   },
 })
 </script>
