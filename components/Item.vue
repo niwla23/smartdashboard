@@ -9,18 +9,11 @@
   >
     <div
       v-hammer:tap="handleClick"
-      class="
-        h-full
-        w-full
-        flex flex-col
-        justify-center
-        font-sans
-        text-white text-center
-      "
+      class="h-full w-full flex flex-col justify-center font-sans text-white text-center"
     >
       <div class="leading-none">
-        <div class="text-4xl">{{ label }}</div>
-        <div class="text-6xl font-bold">
+        <div class="text-2xl md:text-4xl xl:text-5xl">{{ label }}</div>
+        <div class="text-4xl md:text-6xl xl:text-8xl font-bold">
           <animated-number
             v-if="type === 'Number' || type === 'Dimmer'"
             :value="value"
