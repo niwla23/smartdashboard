@@ -13,6 +13,7 @@
     "allowJs": true,
     "sourceMap": true,
     "strict": false,
+    "jsx": "preserve",
     "noEmit": true,
     "experimentalDecorators": true,
     "baseUrl": ".",

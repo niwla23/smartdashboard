@@ -1,33 +1,14 @@
 <template>
-  <section
-    class="w-full h-full bg-white rounded-lg flex justify-center"
-    :style="{
-      'background-color': value === 'ON' ? activeColor : cellColor,
-      'border-color': borderColor,
-      'border-width': borderWidth,
-    }"
-  >
-    <div
-      v-hammer:tap="handleClick"
-      class="h-full w-full flex flex-col justify-center font-sans text-white text-center"
-    >
+  <section class="w-full h-full bg-white rounded-lg flex justify-center smartdashboard-box"
+    :class="{ 'smartdashboard-box-active': value === 'ON' }">
+    <div v-hammer:tap="handleClick" class="h-full w-full flex flex-col justify-center font-sans text-white text-center">
       <div class="leading-none">
         <div class="text-2xl md:text-4xl xl:text-5xl">{{ label }}</div>
         <div class="text-4xl md:text-6xl xl:text-8xl font-bold">
-          <animated-number
-            v-if="type === 'Number' || type === 'Dimmer'"
-            :value="value"
-            :duration="300"
-            :format-value="formatValue"
-          />
-          <section
-            v-else-if="type === 'Color'"
-            class="w-full flex flex-row justify-center p-4"
-          >
-            <figure
-              class="w-40 h-40 rounded-full"
-              :style="{ 'background-color': rgbColor }"
-            />
+          <animated-number v-if="type === 'Number' || type === 'Dimmer'" :value="value" :duration="300"
+            :format-value="formatValue" />
+          <section v-else-if="type === 'Color'" class="w-full flex flex-row justify-center p-4">
+            <figure class="w-40 h-40 rounded-full" :style="{ 'background-color': rgbColor }" />
           </section>
           <p v-else>{{ value.toString() + (suffix || '') }}</p>
         </div>

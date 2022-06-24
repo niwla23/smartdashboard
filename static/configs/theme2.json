@@ -5,6 +5,12 @@
             "refresh": 5,
             "rows": 3,
             "columns": 3,
+            "background_color": "#fff",
+            "background_image": "",
+            "box_color": "#007bff",
+            "border_color": "",
+            "active_color": "rgba(255,150,25,0.9)",
+            "border_width": "0.1rem",
             "items": [
                 {
                     "label": "Produktion",

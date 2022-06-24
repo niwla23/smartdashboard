@@ -1,15 +1,14 @@
 <template>
   <main>
+    <link rel="stylesheet" :href="stylesheetUrl" />
     <Slider v-if="$store.state.sliderOverlayShown" />
     <Colorpicker v-if="$store.state.colorpickerOverlayShown" />
     <div
       v-hammer:swipe.left="nextPage"
       v-hammer:pan="swipeUp"
-      class="grid auto-rows-fr gap-6 h-screen p-4 bg-cover"
+      class="grid auto-rows-fr gap-6 h-screen p-4 bg-cover smartdashboard-bg"
       :style="{
         'grid-template-columns': `repeat(${pageConfig.columns}, minmax(0, 1fr))`,
-        'background-color': pageConfig.background_color,
-        'background-image': `url(${pageConfig.background_image})`,
       }"
     >
       <Item
@@ -38,12 +37,6 @@ const emptyConfig: DashboardConfig = {
       name: 'test',
       refresh: 2,
       columns: 3,
-      background_color: '#000',
-      background_image: '',
-      box_color: '#fff',
-      active_color: '#fff',
-      border_color: '#fff',
-      border_width: '0.1rem',
       items: [],
     },
   ],
@@ -64,6 +57,7 @@ export default Vue.extend({
       dashboardConfig: emptyConfig,
       page: 0,
       tempColor: [100, 100, 6],
+      stylesheetUrl: ''
     }
   },
   computed: {
@@ -73,6 +67,7 @@ export default Vue.extend({
   },
   mounted() {
     this.loadDashboardConfig()
+    this.stylesheetUrl = localStorage.getItem('themePath')
   },
   methods: {
     async loadDashboardConfig() {
@@ -99,6 +94,9 @@ export default Vue.extend({
         this.page += 1
       }
     },
+    // getStylesheetUrl() {
+    //   return ""
+    // }
   },
 })
 </script>

@@ -1,0 +1,15 @@
+.smartdashboard-bg {
+  background-color: rgb(29, 29, 29);
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.smartdashboard-box {
+  background-color: rgb(44, 44, 44);
+  box-shadow: 0px 0px 26px -3px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0px 0px 26px -3px rgba(0, 0, 0, 0.5);
+}
+
+.smartdashboard-box-active {
+  background-color: rgb(255, 166, 0);
+}
