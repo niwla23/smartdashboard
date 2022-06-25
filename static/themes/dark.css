@@ -4,6 +4,14 @@
   padding: 2rem;
 }
 
+[data-page-name="sirens"] {
+  background-color: red;
+}
+
+[data-page-name="sirens"] > .smartdashboard-box {
+  background-color: rgb(0, 255, 221);
+}
+
 .smartdashboard-box {
   background-color: rgb(44, 44, 44);
   box-shadow: 0px 0px 26px -3px rgba(0, 0, 0, 0.5);

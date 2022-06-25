@@ -3,26 +3,12 @@
     <link rel="stylesheet" :href="stylesheetUrl" />
     <Slider v-if="$store.state.sliderOverlayShown" />
     <Colorpicker v-if="$store.state.colorpickerOverlayShown" />
-    <div
-      v-hammer:swipe.left="nextPage"
-      v-hammer:pan="swipeUp"
-      class="grid auto-rows-fr gap-6 h-screen p-4 bg-cover smartdashboard-bg"
-      :style="{
+    <div v-hammer:swipe.left="nextPage" v-hammer:pan="swipeUp"
+      class="grid auto-rows-fr gap-6 h-screen p-4 bg-cover smartdashboard-bg" :style="{
         'grid-template-columns': `repeat(${pageConfig.columns}, minmax(0, 1fr))`,
-      }"
-    >
-      <Item
-        v-for="item in pageConfig.items"
-        :key="item.item_name"
-        :cell-color="pageConfig.box_color"
-        :active-color="pageConfig.active_color"
-        :border-color="pageConfig.border_color"
-        :border-width="pageConfig.border_width"
-        :item-name="item.item_name"
-        :label="item.label"
-        :suffix="item.suffix"
-        :refresh="pageConfig.refresh"
-      />
+      }" :data-page-name="pageConfig.name">
+      <Item v-for="item in pageConfig.items" :key="item.item_name" :item-name="item.item_name" :label="item.label"
+        :suffix="item.suffix" :refresh="pageConfig.refresh" />
     </div>
   </main>
 </template>

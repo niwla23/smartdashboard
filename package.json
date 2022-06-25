@@ -1,13 +1,13 @@
 {
   "name": "smartdashboard",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "private": true,
   "scripts": {
     "dev": "nuxt-ts",
     "build": "nuxt-ts build",
     "start": "nuxt-ts start",
     "generate": "nuxt-ts generate",
-    "pack-dist": "tar -czf smartdashboard.tar.gz dist",
+    "pack-dist": "tar -czf smartdashboard-v$(cat package.json | jq .version -r).tar.gz dist",
     "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
     "lint": "yarn lint:js",
     "test": "jest"
