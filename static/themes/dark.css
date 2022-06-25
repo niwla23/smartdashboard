@@ -21,3 +21,8 @@
 .smartdashboard-box-active {
   background-color: rgb(255, 166, 0);
 }
+
+
+[data-item-name="yourviloetitemhere"] {
+  background-color: blueviolet;
+}

@@ -8,7 +8,7 @@
         'grid-template-columns': `repeat(${pageConfig.columns}, minmax(0, 1fr))`,
       }" :data-page-name="pageConfig.name">
       <Item v-for="item in pageConfig.items" :key="item.item_name" :item-name="item.item_name" :label="item.label"
-        :suffix="item.suffix" :refresh="pageConfig.refresh" />
+        :suffix="item.suffix" :refresh="pageConfig.refresh" :digits="item.digits" />
     </div>
   </main>
 </template>

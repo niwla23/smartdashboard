@@ -5,12 +5,6 @@
             "refresh": 5,
             "rows": 3,
             "columns": 3,
-            "background_color": "#fff",
-            "background_image": "",
-            "box_color": "#007bff",
-            "border_color": "",
-            "active_color": "rgba(255,150,25,0.9)",
-            "border_width": "0.1rem",
             "items": [
                 {
                     "label": "Produktion",
@@ -40,12 +34,13 @@
                 {
                     "label": "Autarkie",
                     "item_name": "E3DC_Autarkie",
-                    "suffix": "%"
+                    "suffix": null
                 },
                 {
-                    "label": "Eigenstrom",
-                    "item_name": "E3DC_Eigen",
-                    "suffix": "%"
+                    "label": "Terrasse unten Temperatur",
+                    "item_name": "esp_terrasse_unten_temperature",
+                    "suffix": "° C",
+                    "digits": 1
                 },
                 {
                     "label": "Tor Zeitsteuerung",
@@ -73,8 +68,19 @@
                 {
                     "label": "Olli Sirene",
                     "item_name": "olli_siren"
+                },
+                {
+                    "label": "Papa Sirene",
+                    "item_name": "papa_siren"
+                },
+                {
+                    "label": "Alwin Sirene",
+                    "item_name": "alwin_siren"
                 }
+
+
             ]
         }
     ]
 }
+

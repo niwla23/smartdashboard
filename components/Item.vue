@@ -1,11 +1,11 @@
 <template>
   <section class="w-full h-full bg-white rounded-lg flex justify-center smartdashboard-box"
-    :class="{ 'smartdashboard-box-active': value === 'ON' }">
+    :class="{ 'smartdashboard-box-active': value === 'ON' }" :data-item-name="itemName" :data-item-state="value">
     <div v-hammer:tap="handleClick" class="h-full w-full flex flex-col justify-center font-sans text-white text-center">
       <div class="leading-none">
         <div class="text-2xl md:text-4xl xl:text-5xl">{{ label }}</div>
         <div class="text-4xl md:text-6xl xl:text-8xl font-bold">
-          <animated-number v-if="type === 'Number' || type === 'Dimmer'" :value="value" :duration="300"
+          <animated-number v-if="/^Number|^Dimmer/.test(type)" :value="value.split(' ')[0].trim()" :duration="300"
             :format-value="formatValue" />
           <section v-else-if="type === 'Color'" class="w-full flex flex-row justify-center p-4">
             <figure class="w-40 h-40 rounded-full" :style="{ 'background-color': rgbColor }" />
@@ -27,13 +27,10 @@ export default Vue.extend({
     AnimatedNumber,
   },
   props: {
-    cellColor: { type: String, required: true },
-    activeColor: { type: String, required: true },
-    borderColor: { type: String, required: true },
-    borderWidth: { type: String, required: true },
     itemName: { type: String, required: true },
     label: { type: String, required: true },
     suffix: { type: String, required: true },
+    digits: { type: Number, default: 0 },
     refresh: { type: Number, default: 5 },
   },
 
@@ -85,7 +82,7 @@ export default Vue.extend({
     },
 
     formatValue(value: number) {
-      return `${value.toFixed(0)}${this.suffix || ''}`
+      return `${value.toFixed(this.digits)}${this.suffix || ''}`
     },
 
     async handleClick(event) {

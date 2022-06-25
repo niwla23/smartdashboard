@@ -3,6 +3,7 @@ export interface Item {
   label: string
   item_name: string
   suffix: string | null
+  digits: number | null
 }
 
 export interface Page {
