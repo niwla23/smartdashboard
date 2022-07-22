@@ -3,7 +3,7 @@ FROM node:14 as builder
 WORKDIR /build
 ADD . /build
 
-RUN yarn 
+RUN yarn --network-timeout 200000
 RUN yarn generate
 
 FROM nginx:1.21
