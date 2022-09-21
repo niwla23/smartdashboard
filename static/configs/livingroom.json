@@ -2,6 +2,7 @@
     "pages": [
         {
             "name": "energy",
+            "title": "Strom",
             "refresh": 5,
             "rows": 3,
             "columns": 3,
@@ -55,6 +56,7 @@
         },
         {
             "name": "sirens",
+            "title": "Sirenen",
             "refresh": 5,
             "columns": 2,
             "background_color": "#000",

@@ -1,25 +1,53 @@
+:root {
+  --bg1: rgb(29, 29, 29);
+  --bg2: rgb(44, 44, 44);
+  --primary: rgb(255, 166, 0);
+  --text-color: rgb(255, 255, 255);
+  --border-radius: 3rem;
+}
+
 .smartdashboard-bg {
-  background-color: rgb(29, 29, 29);
-  gap: 2rem;
+  background-color: var(--bg1);
+  color: var(--text-color);
   padding: 2rem;
+  padding-top: 1rem;
+  gap: 1rem;
 }
 
-[data-page-name="sirens"] {
-  background-color: red;
-}
-
-[data-page-name="sirens"] > .smartdashboard-box {
-  background-color: rgb(0, 255, 221);
+.smartdashboard-grid {
+  gap: 2rem;
 }
 
 .smartdashboard-box {
-  background-color: rgb(44, 44, 44);
+  background-color: var(--bg2);
+  border-radius: var(--border-radius);
   box-shadow: 0px 0px 26px -3px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0px 0px 26px -3px rgba(0, 0, 0, 0.5);
 }
 
 .smartdashboard-box-active {
-  background-color: rgb(255, 166, 0);
+  background-color: var(--primary);
+}
+
+/* page selection buttons */
+.smartdashboard-page-button {
+  background-color: var(--bg2);
+  padding: 1rem;
+  border-radius: 20px;
+}
+
+.smartdashboard-page-button-active {
+  background-color: var(--primary);
+}
+
+
+/* custom theming examples */
+[data-page-name="sirens"] {
+  background-color: red;
+}
+
+[data-page-name="sirens"]>.smartdashboard-box {
+  background-color: rgb(0, 255, 221);
 }
 
 

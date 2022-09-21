@@ -1,14 +1,23 @@
 <template>
-  <main>
+  <main class="">
     <link rel="stylesheet" :href="stylesheetUrl" />
     <Slider v-if="$store.state.sliderOverlayShown" />
     <Colorpicker v-if="$store.state.colorpickerOverlayShown" />
-    <div v-hammer:swipe.left="nextPage" v-hammer:pan="swipeUp"
-      class="grid auto-rows-fr gap-6 h-screen p-4 bg-cover smartdashboard-bg" :style="{
-        'grid-template-columns': `repeat(${pageConfig.columns}, minmax(0, 1fr))`,
-      }" :data-page-name="pageConfig.name">
-      <Item v-for="item in pageConfig.items" :key="item.item_name" :item-name="item.item_name" :label="item.label"
-        :suffix="item.suffix" :refresh="pageConfig.refresh" :digits="item.digits" />
+    <div class="smartdashboard-bg h-screen flex flex-col gap-0" :data-page-name="pageConfig.name">
+      <header class="flex gap-2">
+        <button class="smartdashboard-page-button" @click="page = i" v-for="(p, i) in dashboardConfig.pages" :class="{'smartdashboard-page-button-active': i === page}">
+          {{ p.title }}
+        </button>
+        <div class="flex-grow" />
+        <button @click="swipeUp" class="smartdashboard-page-button">Fullscreen</button>
+      </header>
+      <div v-hammer:swipe.left="nextPage" v-hammer:pan="swipeUp"
+        class="grid auto-rows-fr gap-6 h-full bg-cover flex-grow smartdashboard-grid" :style="{
+            'grid-template-columns': `repeat(${pageConfig.columns}, minmax(0, 1fr))`,
+        }">
+        <Item v-for="item in pageConfig.items" :key="item.item_name" :item-name="item.item_name" :label="item.label"
+          :suffix="item.suffix" :refresh="pageConfig.refresh" :digits="item.digits" />
+      </div>
     </div>
   </main>
 </template>
@@ -57,9 +66,14 @@ export default Vue.extend({
   },
   methods: {
     async loadDashboardConfig() {
-      const response = await fetch(localStorage.getItem('configPath') || '')
-      const dashboardConfig: DashboardConfig = await response.json()
-      this.dashboardConfig = dashboardConfig
+      try {
+        const response = await fetch(localStorage.getItem('configPath') || '')
+        const dashboardConfig: DashboardConfig = await response.json()
+        this.dashboardConfig = dashboardConfig
+      } catch {
+        alert("configuration incomplete or incorrect, you will be redirected to the config page")
+        this.$router.push("/config")
+      }
     },
     swipeUp() {
       const elem = document.documentElement

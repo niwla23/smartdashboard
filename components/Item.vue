@@ -1,7 +1,7 @@
 <template>
-  <section class="w-full h-full bg-white rounded-lg flex justify-center smartdashboard-box"
+  <section class="w-full h-full flex justify-center smartdashboard-box"
     :class="{ 'smartdashboard-box-active': value === 'ON' }" :data-item-name="itemName" :data-item-state="value">
-    <div v-hammer:tap="handleClick" class="h-full w-full flex flex-col justify-center font-sans text-white text-center">
+    <div v-hammer:tap="handleClick" class="h-full w-full flex flex-col justify-center font-sans text-center">
       <div class="leading-none">
         <div class="text-2xl md:text-4xl xl:text-5xl">{{ label }}</div>
         <div class="text-4xl md:text-6xl xl:text-8xl font-bold">
