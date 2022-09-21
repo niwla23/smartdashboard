@@ -3,14 +3,16 @@
     <link rel="stylesheet" :href="stylesheetUrl" />
     <Slider v-if="$store.state.sliderOverlayShown" />
     <Colorpicker v-if="$store.state.colorpickerOverlayShown" />
-    <div class="smartdashboard-bg h-screen flex flex-col gap-0" :data-page-name="pageConfig.name">
-      <header class="flex gap-2">
+    <div class="smartdashboard-bg h-screen flex flex-row gap-0" :data-page-name="pageConfig.name">
+      <aside class="flex flex-col gap-2 w-16">
         <button class="smartdashboard-page-button" @click="page = i" v-for="(p, i) in dashboardConfig.pages" :class="{'smartdashboard-page-button-active': i === page}">
-          {{ p.title }}
+          <img :src="p.icon" />
         </button>
         <div class="flex-grow" />
-        <button @click="swipeUp" class="smartdashboard-page-button">Fullscreen</button>
-      </header>
+        <button class="smartdashboard-page-button" @click="swipeUp">
+        <img src="https://www.svgrepo.com/show/238217/expand-fullscreen.svg" />
+        </button>
+      </aside>
       <div v-hammer:swipe.left="nextPage" v-hammer:pan="swipeUp"
         class="grid auto-rows-fr gap-6 h-full bg-cover flex-grow smartdashboard-grid" :style="{
             'grid-template-columns': `repeat(${pageConfig.columns}, minmax(0, 1fr))`,
@@ -30,6 +32,8 @@ const emptyConfig: DashboardConfig = {
   pages: [
     {
       name: 'test',
+      icon: '',
+      title: 'Test',
       refresh: 2,
       columns: 3,
       items: [],

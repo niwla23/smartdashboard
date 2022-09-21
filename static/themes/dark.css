@@ -10,7 +10,7 @@
   background-color: var(--bg1);
   color: var(--text-color);
   padding: 2rem;
-  padding-top: 1rem;
+  padding-left: 1rem;
   gap: 1rem;
 }
 
@@ -32,6 +32,7 @@
 /* page selection buttons */
 .smartdashboard-page-button {
   background-color: var(--bg2);
+  color: var(--text-color);
   padding: 1rem;
   border-radius: 20px;
 }
@@ -40,10 +41,11 @@
   background-color: var(--primary);
 }
 
-
 /* custom theming examples */
 [data-page-name="sirens"] {
   background-color: red;
+  background-image: url(https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg);
+  background-size: cover;
 }
 
 [data-page-name="sirens"]>.smartdashboard-box {

@@ -3,6 +3,7 @@
         {
             "name": "energy",
             "title": "Strom",
+            "icon": "https://www.svgrepo.com/show/14443/home.svg",
             "refresh": 5,
             "rows": 3,
             "columns": 3,
@@ -57,6 +58,7 @@
         {
             "name": "sirens",
             "title": "Sirenen",
+            "icon": "https://www.svgrepo.com/show/95125/siren.svg",
             "refresh": 5,
             "columns": 2,
             "background_color": "#000",
@@ -68,7 +70,7 @@
             "items": [
                 {
                     "label": "Olli Sirene",
-                    "item_name": "olli_siren"
+                    "item_name": "gate_schedule_active"
                 }
             ]
         }

@@ -8,6 +8,8 @@ export interface Item {
 
 export interface Page {
   name: string
+  title: string
+  icon: string
   refresh: number
   columns: number
   items: Item[]
