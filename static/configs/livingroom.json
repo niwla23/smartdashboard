@@ -7,6 +7,12 @@
             "refresh": 5,
             "rows": 3,
             "columns": 3,
+            "background_color": "#000",
+            "background_image": "",
+            "box_color": "rgba(25,25,25,1)",
+            "border_color": "rgba(255,150,25,0.9)",
+            "active_color": "rgba(255,150,25,0.9)",
+            "border_width": "0.1rem",
             "items": [
                 {
                     "label": "Produktion",
@@ -39,9 +45,10 @@
                     "suffix": "%"
                 },
                 {
-                    "label": "Eigenstrom",
-                    "item_name": "E3DC_Eigen",
-                    "suffix": "%"
+                    "label": "Terrasse unten Temperatur",
+                    "item_name": "esp_terrasse_unten_temperature",
+                    "suffix": " °C",
+                    "digits": 1
                 },
                 {
                     "label": "Tor Zeitsteuerung",
@@ -56,21 +63,52 @@
             ]
         },
         {
-            "name": "sirens",
+            "name": "sirens2",
             "title": "Sirenen",
             "icon": "https://www.svgrepo.com/show/95125/siren.svg",
             "refresh": 5,
             "columns": 2,
-            "background_color": "#000",
-            "background_image": "https://cdn.pixabay.com/photo/2016/03/23/12/53/clock-1274699_960_720.jpg",
-            "border_color": "rgba(255,150,25,0.9)",
-            "active_color": "rgba(255,150,25,0.9)",
-            "border_width": "0.1rem",
-            "box_color": "rgba(255,0,0,0.3)",
             "items": [
                 {
                     "label": "Olli Sirene",
-                    "item_name": "gate_schedule_active"
+                    "item_name": "olli_food_alarm"
+                },
+                {
+                    "label": "Alwin Sirene",
+                    "item_name": "alwin_food_alarm"
+                }
+            ]
+        },
+        {
+            "name": "weather",
+            "title": "Wetter",
+            "icon": "https://www.svgrepo.com/show/261669/cloudy-weather.svg",
+            "refresh": 5,
+            "columns": 2,
+            "items": [
+                {
+                    "label": "Terrasse unten Temperatur",
+                    "item_name": "esp_terrasse_unten_temperature",
+                    "suffix": " °C",
+                    "digits": 1
+                },
+                {
+                    "label": "Terrasse oben Temperatur",
+                    "item_name": "bed_wall_temperature",
+                    "suffix": " °C",
+                    "digits": 1
+                },
+                {
+                    "label": "Terrasse unten Luftfeuchtigkeit",
+                    "item_name": "esp_terrasse_unten_humidity",
+                    "suffix": " %",
+                    "digits": 1
+                },
+                {
+                    "label": "Terrasse oben Luftfeuchtigkeit",
+                    "item_name": "bed_wall_humidity",
+                    "suffix": " %",
+                    "digits": 1
                 }
             ]
         }

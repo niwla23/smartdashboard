@@ -4,13 +4,13 @@
     <Slider v-if="$store.state.sliderOverlayShown" />
     <Colorpicker v-if="$store.state.colorpickerOverlayShown" />
     <div class="smartdashboard-bg h-screen flex flex-row gap-0" :data-page-name="pageConfig.name">
-      <aside class="flex flex-col gap-2 w-16">
-        <button class="smartdashboard-page-button" @click="page = i" v-for="(p, i) in dashboardConfig.pages" :class="{'smartdashboard-page-button-active': i === page}">
+      <aside class="flex flex-col gap-2">
+        <button class="smartdashboard-page-button w-16" @click="page = i" v-for="(p, i) in dashboardConfig.pages" :class="{'smartdashboard-page-button-active': i === page}">
           <img :src="p.icon" />
         </button>
         <div class="flex-grow" />
         <button class="smartdashboard-page-button" @click="swipeUp">
-        <img src="https://www.svgrepo.com/show/238217/expand-fullscreen.svg" />
+        <img src="/icons/fullscreen.svg" />
         </button>
       </aside>
       <div v-hammer:swipe.left="nextPage" v-hammer:pan="swipeUp"
