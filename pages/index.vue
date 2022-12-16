@@ -5,7 +5,7 @@
     <Colorpicker v-if="$store.state.colorpickerOverlayShown" />
     <div class="smartdashboard-bg h-screen flex flex-row gap-0" :data-page-name="pageConfig.name">
       <aside class="flex flex-col gap-2">
-        <button class="smartdashboard-page-button w-16" @click="page = i" v-for="(p, i) in dashboardConfig.pages" :class="{'smartdashboard-page-button-active': i === page}">
+        <button v-for="(p, i) in dashboardConfig.pages" :key="i" class="smartdashboard-page-button w-16" :class="{'smartdashboard-page-button-active': i === page}" @click="page = i">
           <img :src="p.icon" />
         </button>
         <div class="flex-grow" />
@@ -98,9 +98,6 @@ export default Vue.extend({
         this.page += 1
       }
     },
-    // getStylesheetUrl() {
-    //   return ""
-    // }
   },
 })
 </script>
