@@ -32,11 +32,11 @@ export default Vue.extend({
     suffix: { type: String, required: true },
     digits: { type: Number, default: 0 },
     refresh: { type: Number, default: 5 },
+    value:  {type: String, required: true}
   },
 
   data: () => {
     return {
-      value: '0',
       timer: null,
       type: 'number',
     }
@@ -55,9 +55,9 @@ export default Vue.extend({
 
   mounted() {
     this.loadType()
-    this.loadState()
+    // this.loadState()
     this.timer = setInterval(() => {
-      this.loadState()
+      // this.loadState()
     }, this.refresh * 1000)
   },
 
@@ -66,12 +66,12 @@ export default Vue.extend({
   },
 
   methods: {
-    async loadState() {
-      const state = await fetch(
-        `${localStorage.getItem('baseURL')}/items/${this.itemName}/state`
-      )
-      this.value = await state.text()
-    },
+    // async loadState() {
+    //   const state = await fetch(
+    //     `${localStorage.getItem('baseURL')}/items/${this.itemName}/state`
+    //   )
+    //   this.value = await state.text()
+    // },
 
     async loadType() {
       const state = await fetch(
@@ -94,7 +94,7 @@ export default Vue.extend({
           `${localStorage.getItem('baseURL')}/items/${this.itemName}`,
           { method: 'POST', body: this.value === 'ON' ? 'OFF' : 'ON' }
         )
-        this.loadState()
+        // this.loadState()
       } else if (this.type === 'Dimmer') {
         // dimmer action handling (open slider)
         this.$store.commit('setSliderOverlayShown', true)

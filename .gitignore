@@ -93,3 +93,4 @@ sw.*
 # packs
 *.tgz
 *.tar.gz
+.pnpm-store

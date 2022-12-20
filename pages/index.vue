@@ -18,7 +18,7 @@
             'grid-template-columns': `repeat(${pageConfig.columns}, minmax(0, 1fr))`,
         }">
         <Item v-for="item in pageConfig.items" :key="item.item_name" :item-name="item.item_name" :label="item.label"
-          :suffix="item.suffix" :refresh="pageConfig.refresh" :digits="item.digits" />
+          :suffix="item.suffix" :refresh="pageConfig.refresh" :digits="item.digits" :value="itemStates.get(item.item_name) || '0'" />
       </div>
     </div>
   </main>
@@ -56,7 +56,8 @@ export default Vue.extend({
       dashboardConfig: emptyConfig,
       page: 0,
       tempColor: [100, 100, 6],
-      stylesheetUrl: ''
+      stylesheetUrl: '',
+      itemStates: new Map<string, string>()
     }
   },
   computed: {
@@ -67,6 +68,9 @@ export default Vue.extend({
   mounted() {
     this.loadDashboardConfig()
     this.stylesheetUrl = localStorage.getItem('themePath')
+
+    const evtSource = new EventSource("https://openhab.b49.cloudserver.click/rest/events");
+    evtSource.onmessage = this.handleEvent
   },
   methods: {
     async loadDashboardConfig() {
@@ -77,6 +81,14 @@ export default Vue.extend({
       } catch {
         alert("configuration incomplete or incorrect, you will be redirected to the config page")
         this.$router.push("/config")
+      }
+    },
+    handleEvent(event: MessageEvent) {
+      const data = JSON.parse(event.data)
+      const payload = JSON.parse(data.payload)
+      if (data.type === "ItemStateEvent") {
+        const itemName = data.topic.split("/")[2]
+        this.itemStates.set(itemName, payload.value)
       }
     },
     swipeUp() {
