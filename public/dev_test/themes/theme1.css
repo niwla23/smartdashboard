@@ -1,0 +1,28 @@
+@import url(/themes/dark.css);
+
+@font-face {
+  font-family: "Bahnschrift";
+  src: url('BAHNSCHRIFT.TTF') format('truetype');
+}
+
+.smartdashboard-bg {
+  padding: 1rem;
+  font-family: Bahnschrift;
+}
+
+[data-page-name="sirens2"] .smartdashboard-box {
+  background-color: rgb(156, 57, 0);
+}
+
+[data-page-name="sirens2"] .smartdashboard-box-active {
+  background-color: rgb(255, 208, 0);
+}
+
+[data-page-name="weather"] {
+  background-image: url(https://smartdashboard.b49.cloudserver.click/custom/themes/weather.jpg);
+  background-size: cover;
+}
+
+[data-page-name="weather"] .smartdashboard-box {
+  background-color: rgba(255, 255, 255, .3);
+}

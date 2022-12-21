@@ -1,0 +1,23 @@
+{
+  "rules": {
+    "no-use-before-define": "off",
+    "max-len": [
+      "error",
+      {
+        "code": 120
+      }
+    ]
+  },
+  "globals": {
+    "JSX": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "react",
+    "prettier"
+  ],
+  "extends": [
+    "plugin:react/recommended",
+    "prettier"
+  ]
+}
