@@ -1,6 +1,9 @@
-import { useState } from "react"
+import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import QRCode from "qrcode"
 import { useAppSettingsStore } from "../store"
+import { QrReader } from "react-qr-reader"
+import QrConfigReader from "../components/qrConfigReader"
 
 type InputBoxProps = {
   description: string
@@ -28,6 +31,19 @@ export default function Config() {
   const [restApiUrl, setRestApiUrl] = useState(appSettingsStore.restApiUrl)
   const [configUrl, setConfigUrl] = useState(appSettingsStore.configUrl)
   const [stylesheetUrl, setStylesheetUrl] = useState(appSettingsStore.stylesheetUrl)
+
+  const [qrCodeUrl, setQrCodeUrl] = useState("")
+  const [transferMode, setTransferMode] = useState<"unset" | "import" | "export">("unset")
+
+  const exportConfig = () => {
+    return JSON.stringify({ restApiUrl, configUrl, stylesheetUrl })
+  }
+
+  const generateQrCode = async () => {
+    const c = await QRCode.toDataURL(exportConfig())
+    setQrCodeUrl(c)
+    setTransferMode("export")
+  }
 
   const canWeLoadThis = async (url: string): Promise<[boolean, Response | null]> => {
     try {
@@ -106,19 +122,52 @@ export default function Config() {
     navigate("/")
   }
 
+  let transferSection: JSX.Element
+  switch (transferMode) {
+    case "import":
+      transferSection = (
+        <QrConfigReader
+          onResult={(x) => {
+            setRestApiUrl(x.restApiUrl)
+            setConfigUrl(x.configUrl)
+            setStylesheetUrl(x.stylesheetUrl)
+            setTransferMode("unset")
+          }}
+        />
+      )
+      break
+
+    case "export":
+      transferSection = <img className="sm:max-w-[256px] rounded-md" src={qrCodeUrl} />
+      break
+
+    default:
+      transferSection = <div></div>
+      break
+  }
+
   return (
-    <div className="bg-gray-800 h-screen w-screen flex justify-center pt-32 text-white">
-      <main className="flex flex-col gap-2 w-full md:w-2/3 lg:w-1/3 p-4">
+    <div className="bg-gray-800 min-h-screen w-screen flex justify-center lg:pt-32 text-white">
+      <main className="flex flex-col ali gap-2 w-full lg:w-2/3 xl:w-1/3 p-4">
         <h1 className="font-bold text-3xl">Configuration</h1>
         <InputBox value={restApiUrl} onChange={setRestApiUrl} description="openHAB API REST API" />
         <InputBox value={configUrl} onChange={setConfigUrl} description="Config file" />
         <InputBox value={stylesheetUrl} onChange={setStylesheetUrl} description="Stylesheet" />
-
         <div className="w-full flex gap-2">
-          <button className="bg-gray-700 p-2 rounded-md w-full">Export to QR Code</button>
-          <button className="bg-gray-700 p-2 rounded-md w-full">Import from QR Code</button>
+          <button className="bg-gray-700 p-2 rounded-md w-full" onClick={generateQrCode}>
+            Export to QR Code
+          </button>
+          <button
+            className="bg-gray-700 p-2 rounded-md w-full"
+            onClick={() => {
+              setTransferMode("import")
+            }}
+          >
+            Import from QR Code
+          </button>
         </div>
-        <button className="bg-green-700 p-2 rounded-md" onClick={testAndSave}>
+        {transferSection}
+        <button className="bg-green-700 p-2 rounded-md w-full" onClick={testAndSave}>
           Test & Save
         </button>
       </main>
