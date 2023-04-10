@@ -2,7 +2,7 @@ FROM node:18 as builder
 
 WORKDIR /build
 
-RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
+RUN npm i -g pnpm@7.22
 
 COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
