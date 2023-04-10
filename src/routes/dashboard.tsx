@@ -7,7 +7,7 @@ import { enableFullscreen } from "../helpers"
 
 export default function Dashboard() {
   const appSettingsStore = useAppSettingsStore()
-  const [config, setConfig] = useState<DashboardConfig>({ pages: [] })
+  const [config, setConfig] = useState<DashboardConfig>({ pages: [], ping_url: "" })
   const [itemRegistry, setItemRegistry] = useState<{ [itemName: string]: ItemRegistryItem }>({})
   const [currentPageIndex, setCurrentPageIndex] = useState(0)
 
@@ -62,15 +62,38 @@ export default function Dashboard() {
   }
 
   useEffect(() => {
+    let intervalId: NodeJS.Timer
     loadConfig().then((c) => {
       loadAllItems(c)
+      if (c.ping_url) {
+        let url = c.ping_url
+        intervalId = setInterval(() => {
+          fetch(url)
+        }, 10000)
+      }
     })
 
-    const evtSource = new EventSource(`${appSettingsStore.restApiUrl}/events`)
+    let evtSource = new EventSource(`${appSettingsStore.restApiUrl}/events`)
+    var evtSourceErrorHandler = function (event: any) {
+      var txt
+      switch (event.target.readyState) {
+        case EventSource.CONNECTING:
+          txt = "Reconnecting..."
+          break
+        case EventSource.CLOSED:
+          txt = "Reinitializing..."
+          evtSource = new EventSource("../sse.php")
+          evtSource.onerror = evtSourceErrorHandler
+          break
+      }
+      console.log(txt)
+    }
+    evtSource.onerror = evtSourceErrorHandler
     evtSource.onmessage = handleSseEvent
 
     return () => {
       evtSource.close()
+      clearInterval(intervalId)
     }
   }, [])
 

@@ -16,6 +16,7 @@ export interface Page {
 }
 
 export interface DashboardConfig {
+  ping_url?: string;
   pages: Page[];
 }
 

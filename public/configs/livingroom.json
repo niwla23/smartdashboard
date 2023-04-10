@@ -1,4 +1,5 @@
 {
+    "ping_url": "http://localhost:8000/ping", 
     "pages": [
         {
             "name": "energy",
