@@ -1,10 +1,10 @@
 {
-    "ping_url": "http://localhost:8000/ping", 
+    "ping_url": "http://localhost:8000",
     "pages": [
         {
             "name": "energy",
             "title": "Strom",
-            "icon": "/icons/home.svg",
+            "icon": "/custom/icons/home.svg",
             "refresh": 5,
             "rows": 3,
             "columns": 3,
@@ -52,9 +52,9 @@
                     "digits": 1
                 },
                 {
-                    "label": "Tor Zeitsteuerung",
-                    "item_name": "gate_schedule_active",
-                    "suffix": null
+                    "label": "Wallbox Ladestrom",
+                    "item_name": "E3DC_Wallbox_Consumption",
+                    "suffix": "W"
                 },
                 {
                     "label": "Tor",
@@ -64,9 +64,67 @@
             ]
         },
         {
+            "name": "settings",
+            "title": "Einstellungen",
+            "icon": "/custom/icons/settings.svg",
+            "refresh": 5,
+            "columns": 2,
+            "items": [
+                {
+                    "label": "Tor Zeitsteuerung",
+                    "item_name": "gate_schedule_active",
+                    "suffix": null
+                },
+                {
+                    "label": "Post Benachrichtigungen",
+                    "item_name": "mail_notification_active",
+                    "suffix": null
+                }
+            ]
+        },
+        {
+            "name": "wallbox",
+            "title": "Wallbox",
+            "icon": "/icons/car.svg",
+            "refresh": 5,
+            "columns": 3,
+            "items": [
+                {
+                    "label": "Sonnenmodus (RW)",
+                    "item_name": "E3DC_WB_Sunmode",
+                    "suffix": null
+                },
+                {
+                    "label": "1 Phase laden (RW)",
+                    "item_name": "E3DC_WB_1PhaseCharging",
+                    "suffix": null
+                },
+                {
+                    "label": "Laden abgebrochen (RW)",
+                    "item_name": "E3DC_WB_ChargingAborted",
+                    "suffix": null
+                },
+                {
+                    "label": "Ladestrom",
+                    "item_name": "E3DC_Wallbox_Consumption",
+                    "suffix": "W"
+                },
+                {
+                    "label": "Relay 16A",
+                    "item_name": "E3DC_WB_Relay16A",
+                    "suffix": null
+                },
+                {
+                    "label": "Relay 16A",
+                    "item_name": "E3DC_WB_Relay32A",
+                    "suffix": null
+                }
+            ]
+        },
+        {
             "name": "sirens2",
             "title": "Sirenen",
-            "icon": "/icons/siren.svg",
+            "icon": "/custom/icons/siren.svg",
             "refresh": 5,
             "columns": 2,
             "items": [
@@ -83,7 +141,7 @@
         {
             "name": "weather",
             "title": "Wetter",
-            "icon": "/icons/weather.svg",
+            "icon": "/custom/icons/weather.svg",
             "refresh": 5,
             "columns": 2,
             "items": [
@@ -94,20 +152,32 @@
                     "digits": 1
                 },
                 {
-                    "label": "Terrasse oben Temperatur",
-                    "item_name": "bed_wall_temperature",
-                    "suffix": " °C",
-                    "digits": 1
-                },
-                {
                     "label": "Terrasse unten Luftfeuchtigkeit",
                     "item_name": "esp_terrasse_unten_humidity",
                     "suffix": " %",
                     "digits": 1
                 },
                 {
+                    "label": "Terrasse oben Temperatur",
+                    "item_name": "bed_wall_temperature",
+                    "suffix": " °C",
+                    "digits": 1
+                },
+                {
                     "label": "Terrasse oben Luftfeuchtigkeit",
                     "item_name": "bed_wall_humidity",
+                    "suffix": " %",
+                    "digits": 1
+                },
+                {
+                    "label": "OWM Temperatur",
+                    "item_name": "localCurrentTemperature",
+                    "suffix": " °C",
+                    "digits": 1
+                },
+                {
+                    "label": "OWM Luftfeuchtigkeit",
+                    "item_name": "localCurrentHumidity",
                     "suffix": " %",
                     "digits": 1
                 }
