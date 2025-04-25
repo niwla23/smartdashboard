@@ -73,8 +73,9 @@ export default function Dashboard() {
       }
     })
 
-    let evtSource = new EventSource(`${appSettingsStore.restApiUrl}/events`)
-    var evtSourceErrorHandler = function (event: any) {
+    let eventUrl = `${appSettingsStore.restApiUrl}/events`
+    let evtSource = new EventSource(eventUrl)
+    var evtSourceErrorHandler = function(event: any) {
       var txt
       switch (event.target.readyState) {
         case EventSource.CONNECTING:
@@ -82,7 +83,7 @@ export default function Dashboard() {
           break
         case EventSource.CLOSED:
           txt = "Reinitializing..."
-          evtSource = new EventSource("../sse.php")
+          evtSource = new EventSource(eventUrl)
           evtSource.onerror = evtSourceErrorHandler
           break
       }
