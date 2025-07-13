@@ -2,7 +2,7 @@ FROM node:18 as builder
 
 WORKDIR /build
 
-RUN npm i -g pnpm@7.22
+RUN npm i -g pnpm@8.15
 
 COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
