@@ -7,6 +7,7 @@ import DimmerBox from "./dimmerBox"
 export type ItemBoxProps = {
   itemName: string
   itemRegistryData?: ItemRegistryItem
+  stateOverwrite?: string
   suffix: string | null
   digits?: number
   label: string

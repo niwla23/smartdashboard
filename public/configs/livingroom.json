@@ -1,187 +1,189 @@
 {
-    "ping_url": "http://localhost:8000",
-    "pages": [
+  "ping_url": "http://localhost:8000",
+  "pages": [
+    {
+      "name": "energy",
+      "title": "Strom",
+      "icon": "/custom/icons/home.svg",
+      "refresh": 5,
+      "rows": 3,
+      "columns": 3,
+      "background_color": "#000",
+      "background_image": "",
+      "box_color": "rgba(25,25,25,1)",
+      "border_color": "rgba(255,150,25,0.9)",
+      "active_color": "rgba(255,150,25,0.9)",
+      "border_width": "0.1rem",
+      "items": [
         {
-            "name": "energy",
-            "title": "Strom",
-            "icon": "/custom/icons/home.svg",
-            "refresh": 5,
-            "rows": 3,
-            "columns": 3,
-            "background_color": "#000",
-            "background_image": "",
-            "box_color": "rgba(25,25,25,1)",
-            "border_color": "rgba(255,150,25,0.9)",
-            "active_color": "rgba(255,150,25,0.9)",
-            "border_width": "0.1rem",
-            "items": [
-                {
-                    "label": "Produktion",
-                    "item_name": "E3DC_PV",
-                    "suffix": "W"
-                },
-                {
-                    "label": "Verbrauch",
-                    "item_name": "E3DC_Haus",
-                    "suffix": "W"
-                },
-                {
-                    "label": "Akkuladeleistung",
-                    "item_name": "E3DC_Battery",
-                    "suffix": "W"
-                },
-                {
-                    "label": "Netz",
-                    "item_name": "E3DC_Netz",
-                    "suffix": "W"
-                },
-                {
-                    "label": "Akkustand",
-                    "item_name": "E3DC_SOC",
-                    "suffix": "%"
-                },
-                {
-                    "label": "Autarkie",
-                    "item_name": "E3DC_Autarkie",
-                    "suffix": "%"
-                },
-                {
-                    "label": "Terrasse unten Temperatur",
-                    "item_name": "esp_terrasse_unten_temperature",
-                    "suffix": " °C",
-                    "digits": 1
-                },
-                {
-                    "label": "Wallbox Ladestrom",
-                    "item_name": "E3DC_Wallbox_Consumption",
-                    "suffix": "W"
-                },
-                {
-                    "label": "Tor",
-                    "item_name": "gate",
-                    "suffix": "%"
-                }
-            ]
+          "label": "Produktion",
+          "item_name": "E3DC_PV",
+          "suffix": "W"
         },
         {
-            "name": "settings",
-            "title": "Einstellungen",
-            "icon": "/custom/icons/settings.svg",
-            "refresh": 5,
-            "columns": 2,
-            "items": [
-                {
-                    "label": "Tor Zeitsteuerung",
-                    "item_name": "gate_schedule_active",
-                    "suffix": null
-                },
-                {
-                    "label": "Post Benachrichtigungen",
-                    "item_name": "mail_notification_active",
-                    "suffix": null
-                }
-            ]
+          "label": "Verbrauch",
+          "item_name": "E3DC_Haus",
+          "suffix": "W"
         },
         {
-            "name": "wallbox",
-            "title": "Wallbox",
-            "icon": "/icons/car.svg",
-            "refresh": 5,
-            "columns": 3,
-            "items": [
-                {
-                    "label": "Sonnenmodus (RW)",
-                    "item_name": "E3DC_WB_Sunmode",
-                    "suffix": null
-                },
-                {
-                    "label": "1 Phase laden (RW)",
-                    "item_name": "E3DC_WB_1PhaseCharging",
-                    "suffix": null
-                },
-                {
-                    "label": "Laden abgebrochen (RW)",
-                    "item_name": "E3DC_WB_ChargingAborted",
-                    "suffix": null
-                },
-                {
-                    "label": "Ladestrom",
-                    "item_name": "E3DC_Wallbox_Consumption",
-                    "suffix": "W"
-                },
-                {
-                    "label": "Relay 16A",
-                    "item_name": "E3DC_WB_Relay16A",
-                    "suffix": null
-                },
-                {
-                    "label": "Relay 16A",
-                    "item_name": "E3DC_WB_Relay32A",
-                    "suffix": null
-                }
-            ]
+          "label": "Akkuladeleistung",
+          "item_name": "E3DC_Battery",
+          "suffix": "W"
         },
         {
-            "name": "sirens2",
-            "title": "Sirenen",
-            "icon": "/custom/icons/siren.svg",
-            "refresh": 5,
-            "columns": 2,
-            "items": [
-                {
-                    "label": "Olli Sirene",
-                    "item_name": "olli_food_alarm"
-                },
-                {
-                    "label": "Alwin Sirene",
-                    "item_name": "alwin_food_alarm"
-                }
-            ]
+          "label": "Netz",
+          "item_name": "E3DC_Netz",
+          "suffix": "W"
         },
         {
-            "name": "weather",
-            "title": "Wetter",
-            "icon": "/custom/icons/weather.svg",
-            "refresh": 5,
-            "columns": 2,
-            "items": [
-                {
-                    "label": "Terrasse unten Temperatur",
-                    "item_name": "esp_terrasse_unten_temperature",
-                    "suffix": " °C",
-                    "digits": 1
-                },
-                {
-                    "label": "Terrasse unten Luftfeuchtigkeit",
-                    "item_name": "esp_terrasse_unten_humidity",
-                    "suffix": " %",
-                    "digits": 1
-                },
-                {
-                    "label": "Terrasse oben Temperatur",
-                    "item_name": "bed_wall_temperature",
-                    "suffix": " °C",
-                    "digits": 1
-                },
-                {
-                    "label": "Terrasse oben Luftfeuchtigkeit",
-                    "item_name": "bed_wall_humidity",
-                    "suffix": " %",
-                    "digits": 1
-                },
-                {
-                    "label": "OWM Temperatur",
-                    "item_name": "localCurrentTemperature",
-                    "suffix": " °C",
-                    "digits": 1
-                },
-                {
-                    "label": "OWM Luftfeuchtigkeit",
-                    "item_name": "localCurrentHumidity",
-                    "suffix": " %",
-                    "digits": 1
-                }
-            ]
+          "label": "Akkustand",
+          "item_name": "E3DC_SOC",
+          "suffix": "%"
+        },
+        {
+          "label": "Autarkie",
+          "item_name": "E3DC_Autarkie",
+          "suffix": "%"
+        },
+        {
+          "label": "Terrasse unten Temperatur",
+          "item_name": "esp_terrasse_unten_temperature",
+          "suffix": " °C",
+          "digits": 1
+        },
+        {
+          "label": "Wallbox Ladestrom",
+          "item_name": "E3DC_Wallbox_Consumption",
+          "suffix": "W"
+        },
+        {
+          "label": "Tor",
+          "item_name": "gate",
+          "suffix": "%"
         }
-    ]
+      ]
+    },
+    {
+      "name": "settings",
+      "title": "Einstellungen",
+      "icon": "/custom/icons/settings.svg",
+      "refresh": 5,
+      "columns": 2,
+      "items": [
+        {
+          "label": "Tor Zeitsteuerung",
+          "item_name": "gate_schedule_active",
+          "suffix": null
+        },
+        {
+          "label": "Post Benachrichtigungen",
+          "item_name": "mail_notification_active",
+          "suffix": null
+        }
+      ]
+    },
+    {
+      "name": "wallbox",
+      "title": "Wallbox",
+      "icon": "/icons/car.svg",
+      "refresh": 5,
+      "columns": 3,
+      "items": [
+        {
+          "label": "Sonnenmodus (RW)",
+          "item_name": "E3DC_WB_Sunmode",
+          "suffix": null
+        },
+        {
+          "label": "1 Phase laden (RW)",
+          "item_name": "E3DC_WB_1PhaseCharging",
+          "suffix": null
+        },
+        {
+          "label": "Laden abgebrochen (RW)",
+          "item_name": "E3DC_WB_ChargingAborted",
+          "suffix": null
+        },
+        {
+          "label": "Ladestrom",
+          "item_name": "E3DC_Wallbox_Consumption",
+          "suffix": "W"
+        },
+        {
+          "label": "Relay 16A",
+          "item_name": "E3DC_WB_Relay16A",
+          "suffix": null
+        },
+        {
+          "label": "Relay 16A",
+          "item_name": "E3DC_WB_Relay32A",
+          "suffix": null
+        }
+      ]
+    },
+    {
+      "name": "sirens2",
+      "title": "Sirenen",
+      "icon": "/custom/icons/siren.svg",
+      "refresh": 5,
+      "columns": 2,
+      "items": [
+        {
+          "label": "Olli Sirene",
+          "item_name": "olli_food_alarm"
+        },
+        {
+          "label": "Alwin Sirene",
+          "item_name": "alwin_food_alarm"
+        }
+      ]
+    },
+    {
+      "name": "testiframe",
+      "title": "Wetter",
+      "icon": "/custom/icons/weather.svg",
+      "type": "iframe",
+      "iframeUrl": "https://home.b49.cloudserver.click/energy-kiosk/0",
+      "refresh": 5,
+      "columns": 2,
+      "items": [
+        {
+          "label": "Terrasse unten Temperatur",
+          "item_name": "esp_terrasse_unten_temperature",
+          "suffix": " °C",
+          "digits": 1
+        },
+        {
+          "label": "Terrasse unten Luftfeuchtigkeit",
+          "item_name": "esp_terrasse_unten_humidity",
+          "suffix": " %",
+          "digits": 1
+        },
+        {
+          "label": "Terrasse oben Temperatur",
+          "item_name": "bed_wall_temperature",
+          "suffix": " °C",
+          "digits": 1
+        },
+        {
+          "label": "Terrasse oben Luftfeuchtigkeit",
+          "item_name": "bed_wall_humidity",
+          "suffix": " %",
+          "digits": 1
+        },
+        {
+          "label": "OWM Temperatur",
+          "item_name": "localCurrentTemperature",
+          "suffix": " °C",
+          "digits": 1
+        },
+        {
+          "label": "OWM Luftfeuchtigkeit",
+          "item_name": "localCurrentHumidity",
+          "suffix": " %",
+          "digits": 1
+        }
+      ]
+    }
+  ]
 }

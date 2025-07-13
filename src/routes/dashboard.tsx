@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { produce } from "immer"
 import { useAppSettingsStore } from "../store"
-import { DashboardConfig, ItemRegistryItem } from "../types"
+import { DashboardConfig, ItemRegistryItem, Page } from "../types"
 import ItemBox from "../components/itemBox"
 import { enableFullscreen } from "../helpers"
 
@@ -46,6 +46,32 @@ export default function Dashboard() {
         loadItemState(item.item_name)
       }
     }
+  }
+
+  const getPageContentGrid = (currentPage: Page) => {
+
+    const renderedItems: JSX.Element[] = []
+    currentPage.items.forEach((item) => {
+      renderedItems.push(
+        <ItemBox
+          itemName={item.item_name}
+          label={item.label}
+          suffix={item.suffix}
+          digits={item.digits!}
+          itemRegistryData={itemRegistry[item.item_name]}
+          key={item.item_name}
+        />
+      )
+    })
+
+    return (
+      <main
+        className="grid h-full auto-rows-fr gap-6 bg-cover flex-grow smartdashboard-grid transition-all"
+        style={{ gridTemplateColumns: `repeat(${currentPage.columns}, minmax(0,1fr))` }}
+      >
+        {renderedItems}
+      </main>
+    )
   }
 
   const handleSseEvent = (event: MessageEvent) => {
@@ -104,19 +130,6 @@ export default function Dashboard() {
 
   const currentPage = config.pages[currentPageIndex]
 
-  const renderedItems: JSX.Element[] = []
-  currentPage.items.forEach((item) => {
-    renderedItems.push(
-      <ItemBox
-        itemName={item.item_name}
-        label={item.label}
-        suffix={item.suffix}
-        digits={item.digits!}
-        itemRegistryData={itemRegistry[item.item_name]}
-        key={item.item_name}
-      />
-    )
-  })
 
   const renderedPageIcons: JSX.Element[] = []
   for (const [i, page] of config.pages.entries()) {
@@ -132,6 +145,11 @@ export default function Dashboard() {
     )
   }
 
+  let content = getPageContentGrid(currentPage)
+  if (currentPage.type == "iframe") {
+    content = (<iframe className="w-full rounded-md" src={currentPage.iframeUrl} />)
+  }
+
   return (
     <div className="select-none">
       <link rel="stylesheet" href={appSettingsStore.stylesheetUrl} />
@@ -144,12 +162,7 @@ export default function Dashboard() {
             <img src="/icons/fullscreen.svg" />
           </button>
         </aside>
-        <main
-          className="grid h-full auto-rows-fr gap-6 bg-cover flex-grow smartdashboard-grid transition-all"
-          style={{ gridTemplateColumns: `repeat(${currentPage.columns}, minmax(0,1fr))` }}
-        >
-          {renderedItems}
-        </main>
+        {content}
       </div>
     </div>
   )

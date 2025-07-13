@@ -10,6 +10,8 @@ export interface Page {
   name: string;
   title: string;
   icon: string;
+  type?: "grid" | "iframe";
+  iframeUrl?: string;
   refresh: number;
   columns: number;
   items: Item[];
